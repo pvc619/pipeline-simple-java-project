@@ -29,16 +29,17 @@ pipeline {
                               ]],
                               browser: [$class: 'GithubWeb', url: 'https://github.com/pvc619/simple-java-project/blob/main/src/main/java/com/example/App.java']
                         ])
+
                     } catch (Exception e) {
                         error("Checkout Failed: ${e.message}")
                     } 
                         
-             }
+                }
             }
             
-          }
-
         }
+
+    
 
     stage('Build') {
             steps {
@@ -55,7 +56,7 @@ pipeline {
                 }
              }
             }
-    }
+        }
     
     stage('Deploy to Nexus') {
             steps {
@@ -77,13 +78,13 @@ pipeline {
                      )
                     } catch (Exception e) {
                     error("Build Failed: ${e.message}")
-                }
+                    }
                 }
             }
         }
     
-
     }
+    
     post {
         failure {
             script {
@@ -98,8 +99,9 @@ pipeline {
             }
         }
     }
-
+    
 }
+
 
 
 
