@@ -2,9 +2,9 @@ pipeline {
     agent any 
 
     options {
-        skipDefaultCheckout(true) // Skip default checkout to perform custom checkout later
-        buildDiscarder(logRotator(numToKeepStr: '10')) // Example of build retention
-        timestamps() // Add timestamps to build output
+        //skipDefaultCheckout(true) // Skip default checkout to perform custom checkout later
+        //buildDiscarder(logRotator(numToKeepStr: '10')) // Example of build retention
+        //timestamps() // Add timestamps to build output
     }
 
     triggers {
