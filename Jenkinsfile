@@ -20,12 +20,9 @@ pipeline {
                 script {
                     // Custom checkout of the repository with additional branch configuration
                     checkout([$class: 'GitSCM', 
-                              branches: [[name: '*/main']],
+                              branches: [[name: 'main']],
                               doGenerateSubmoduleConfigurations: false,
-                              extensions: [
-                                  [$class: 'CloneOption', noTags: false, shallow: false, depth: 0, reference: ''],
-                                  [$class: 'CleanBeforeCheckout']
-                              ],
+                              extensions: [],
                               userRemoteConfigs: [[
                                   url: 'https://github.com/pvc619/pipeline-simple-java-project.git', 
                                   credentialsId: 'git_test_pipeline',
