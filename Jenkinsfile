@@ -56,7 +56,7 @@ pipeline {
                         repository: 'Deepmatrix_test', // Repository in Nexus
                         credentialsId: 'df93fb3d-ad1c-450e-bd8f-e9642606b087', // Jenkins credentials ID for Nexus authentication
                         artifacts: [
-                            [artifactId: 'pipeline-simple-java-project', file: '${WORKSPACE}/target/pipeline-simple-java-project-1.0-SNAPSHOT.jar', type: 'jar'] // Path to the generated artifact
+                            [artifactId: 'pipeline-simple-java-project', file: '/var/lib/jenkins/workspace/pipeline-simple-java-project/target/pipeline-simple-java-project-1.0-SNAPSHOT.jar', type: 'jar'] // Path to the generated artifact
                             // Add more artifacts as needed
                         ]
                     )
