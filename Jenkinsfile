@@ -1,12 +1,6 @@
 pipeline {
     agent any 
 
-    options {
-        //skipDefaultCheckout(true) // Skip default checkout to perform custom checkout later
-        //buildDiscarder(logRotator(numToKeepStr: '10')) // Example of build retention
-        //timestamps() // Add timestamps to build output
-    }
-
     triggers {
         githubPush() // Trigger the pipeline on GitHub push events
     }
@@ -58,7 +52,7 @@ pipeline {
                         protocol: 'http', 
                         nexusUrl: 'http://nexus.example.com', // Nexus repository URL
                         groupId: 'com.example', // Group ID of the artifact
-                        version: '1.0-SNAPSHOT', // Version of the artifact
+                        version: '1.0-SNAPSHOT', // Version of the artifac
                         repository: 'Deepmatrix_test', // Repository in Nexus
                         credentialsId: 'df93fb3d-ad1c-450e-bd8f-e9642606b087', // Jenkins credentials ID for Nexus authentication
                         artifacts: [
