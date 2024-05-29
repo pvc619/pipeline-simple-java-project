@@ -29,12 +29,14 @@ pipeline {
                                   refspec: '+refs/heads/main:refs/remotes/origin/main'
                               ]],
                               browser: [$class: 'GithubWeb', url: 'https://github.com/pvc619/simple-java-project/blob/main/src/main/java/com/example/App.java']
-                    ])
+                    ]
+                    
+                  )
                 }
             }
 
         }
-    stage('Build') {
+    //stage('Build') {
             steps {
                 script {
                     // Define the path to Maven
@@ -45,8 +47,9 @@ pipeline {
                     sh "${mavenCommand} -f /${WORKSPACE}/pom.xml clean package"
                 }
             }
+    }
     
-    stage('Deploy to Nexus') {
+    //stage('Deploy to Nexus') {
             steps {
                 script {
                     // Nexus Artifact Uploader configuration
