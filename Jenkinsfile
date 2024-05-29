@@ -1,6 +1,10 @@
 pipeline {
     agent any 
 
+    environment {
+        EMAIL_RECIPIENTS = 'pavan.chawthay@deepmatrix.io' // Replace with your email
+    }
+
     triggers {
         githubPush() // Trigger the pipeline on GitHub push events
     }
@@ -23,9 +27,10 @@ pipeline {
                                   refspec: '+refs/heads/main:refs/remotes/origin/main'
                               ]],
                               browser: [$class: 'GithubWeb', url: 'https://github.com/pvc619/simple-java-project/blob/main/src/main/java/com/example/App.java']
-                    ]
-                    
-                  )
+                    ])
+
+                }catch (Exception e) {
+                    error("Checkout Failed: ${e.message}")
                 }
             }
 
@@ -39,6 +44,8 @@ pipeline {
                     
                     // Execute Maven build with clean package goals
                     sh "${mavenCommand} -f /${WORKSPACE}/pom.xml clean package"
+                }catch (Exception e) {
+                    error("Build Failed: ${e.message}")
                 }
             }
     }
@@ -60,11 +67,27 @@ pipeline {
                             // Add more artifacts as needed
                         ]
                     )
+                }catch (Exception e) {
+                    error("Build Failed: ${e.message}")
                 }
             }
         }
     
 
+    }
+    post {
+        failure {
+            script {
+                def failureReason = currentBuild.description ?: 'Unknown'
+                emailext(
+                    to: "${env.EMAIL_RECIPIENTS}",
+                    subject: "Jenkins Build Failure: ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
+                    body: """<p>Build failed in stage: ${currentBuild.currentResult}</p>
+                             <p>Failure reason: ${failureReason}</p>
+                             <p>Check console output for more details: ${env.BUILD_URL}console</p>"""
+                )
+            }
+        }
     }
 
 }
