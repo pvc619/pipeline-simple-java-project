@@ -50,7 +50,7 @@ pipeline {
                     nexusArtifactUploader( 
                         nexusVersion: 'nexus3', 
                         protocol: 'http', 
-                        nexusUrl: 'http://nexus.example.com', // Nexus repository URL
+                        nexusUrl: '3.110.221.63:8081', // Nexus repository URL
                         groupId: 'com.example', // Group ID of the artifact
                         version: '1.0-SNAPSHOT', // Version of the artifac
                         repository: 'Deepmatrix_test', // Repository in Nexus
