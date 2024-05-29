@@ -28,7 +28,6 @@ pipeline {
                               ]],
                               browser: [$class: 'GithubWeb', url: 'https://github.com/pvc619/simple-java-project/blob/main/src/main/java/com/example/App.java']
                     ])
-
                 } catch (Exception e) {
                     error("Checkout Failed: ${e.message}")
                 }
@@ -45,7 +44,7 @@ pipeline {
                     
                     // Execute Maven build with clean package goals
                     sh "${mavenCommand} -f /${WORKSPACE}/pom.xml clean package"
-                }catch (Exception e) {
+                } catch (Exception e) {
                     error("Build Failed: ${e.message}")
                 }
             }
@@ -68,7 +67,7 @@ pipeline {
                             // Add more artifacts as needed
                         ]
                     )
-                }catch (Exception e) {
+                } catch (Exception e) {
                     error("Build Failed: ${e.message}")
                 }
             }
