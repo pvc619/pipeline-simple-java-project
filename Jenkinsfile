@@ -27,7 +27,7 @@ pipeline {
                                   [$class: 'CleanBeforeCheckout']
                               ],
                               userRemoteConfigs: [[
-                                  url: 'https://github.com/pvc619/simple-java-project.git', 
+                                  url: 'https://github.com/pvc619/pipeline-simple-java-project.git', 
                                   credentialsId: 'git_test_pipeline',
                                   refspec: '+refs/heads/main:refs/remotes/origin/main'
                               ]],
